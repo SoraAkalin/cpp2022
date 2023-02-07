@@ -150,6 +150,8 @@ void SearchPatient(PatientList *patientlist)
     system("cls");
 }
 
+// test
+
 int main()
 {
     char meun;
