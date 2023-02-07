@@ -150,7 +150,7 @@ void SearchPatient(PatientList *patientlist)
     system("cls");
 }
 
-// test
+// test01
 
 int main()
 {
