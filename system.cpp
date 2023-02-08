@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string.h>
+#include <fstream>
+#include <conio.h>
 #define MAX 1000
 using namespace std;
 
@@ -29,6 +31,40 @@ void MenuSelect()
     cout << "\n";
 }
 
+static void inputPassword(string &str, int size)
+{
+    char c;
+    int count = 0;
+    char *password = new char[size]; // 动态申请空间
+    while ((c = getch()) != 'r')
+    {
+
+        // if (c == 8) { // 退格
+        // 	if (count == 0) {
+        // 		continue;
+        // 	}
+        // 	putchar('b'); // 回退一格
+        // 	putchar(' '); // 输出一个空格将原来的*隐藏
+        // 	putchar('b'); // 再回退一格等待输入
+        // 	count--;
+        // }
+        if (count == size - 1)
+        { // 最大长度为size-1
+            continue;
+        }
+        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+        {                 // 密码只可包含数字和字母
+            putchar('*'); // 接收到一个字符后, 打印一个*
+            password[count] = c;
+            count++;
+        }
+    }
+    password[count] = ' ';
+    str = password;
+    delete[] password; // 释放空间
+    cout << endl;
+}
+
 //登录界面
 void LoginIn()
 {
@@ -42,7 +78,25 @@ void LoginIn()
         cout << "\t\t用户名：";
         cin >> username;
         cout << "\t\t密码：";
-        cin >> pwd;
+        // cin >> pwd;
+
+        char c;
+        int count = 0;
+        char password[MAX] = {};
+        while ((c = getch()) != '\r')
+        {
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+            {                 // 密码只可包含数字和字母
+                putchar('*'); // 接收到一个字符后, 打印一个*
+                password[count] = c;
+                count++;
+            }
+        }
+        // password[count] = ' ';
+        pwd = password;
+        // delete[] password; // 释放空间
+        // cout << "您输入的密码为" << pwd << endl;
+        cout << endl;
         if (username != "admin" || pwd != "1234")
         {
             cout << "\t\t用户名或密码错误，请重新输入" << endl;
@@ -149,11 +203,6 @@ void SearchPatient(PatientList *patientlist)
     system("pause");
     system("cls");
 }
-
-// test01
-// test02
-// test03
-// test04
 
 int main()
 {
