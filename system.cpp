@@ -68,7 +68,7 @@ void MenuSelect()
 //     cout << endl;
 // }
 
-//登录界面
+// 登录界面
 void LoginIn()
 {
     TopInfo();
@@ -137,7 +137,7 @@ int GetStringWords(string strWord)
     int i(0);
     while (i < nLen)
     {
-        //如果是汉字则移到下一个
+        // 如果是汉字则移到下一个
         if (strWord[i] & 0x80)
         {
             i++;
@@ -179,7 +179,7 @@ bool JudgeEmail(string strWord)
     return res;
 }
 
-//新增患者记录
+// 新增患者记录
 void AddPatient(PatientList *patientlist)
 {
     char flag;
@@ -262,6 +262,12 @@ void AddPatient(PatientList *patientlist)
             }
         } while (GetStringWords(patientlist->patient[i].doctorname) < 2 || GetStringWords(patientlist->patient[i].doctorname) > 6);
         patientlist->P_size++;
+        ofstream ofs;
+        ofs.open("Record1.txt", ios::out);
+        ofs << patientlist->patient[i].name << " " << patientlist->patient[i].sex << patientlist->patient[i].age
+            << patientlist->patient[i].address << patientlist->patient[i].phone << patientlist->patient[i].email
+            << patientlist->patient[i].symptom << patientlist->patient[i].doctorname;
+        ofs.close();
         cout << "\t\t……………患者信息录入成功……………" << endl;
         cout << "\t\t是否继续录用[Y/N]：";
         cin >> flag;
@@ -271,7 +277,7 @@ void AddPatient(PatientList *patientlist)
     system("cls");
 }
 
-//查询患者信息
+// 查询患者信息
 void SearchPatient(PatientList *patientlist)
 {
     char retry;
