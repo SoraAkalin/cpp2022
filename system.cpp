@@ -264,9 +264,9 @@ void AddPatient(PatientList *patientlist)
         patientlist->P_size++;
         ofstream ofs;
         ofs.open("Record1.txt", ios::out);
-        ofs << patientlist->patient[i].name << " " << patientlist->patient[i].sex << patientlist->patient[i].age
-            << patientlist->patient[i].address << patientlist->patient[i].phone << patientlist->patient[i].email
-            << patientlist->patient[i].symptom << patientlist->patient[i].doctorname;
+        ofs << patientlist->patient[i].name << " " << patientlist->patient[i].sex << " " << patientlist->patient[i].age
+            << " " << patientlist->patient[i].address << " " << patientlist->patient[i].phone << " " << patientlist->patient[i].email
+            << " " << patientlist->patient[i].symptom << " " << patientlist->patient[i].doctorname;
         ofs.close();
         cout << "\t\t……………患者信息录入成功……………" << endl;
         cout << "\t\t是否继续录用[Y/N]：";
@@ -345,16 +345,20 @@ int main()
         }
 
         case '2':
-
-            break;
+        {
+            // SortPatient();
+        }
+        break;
         case '3':
         {
             SearchPatient(&patientlist);
             break;
         }
         case '4':
-
-            break;
+        {
+            // AddVacInfo();
+        }
+        break;
         case '5':
             cout << "\t\t感谢使用！";
             system("pause");
