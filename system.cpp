@@ -265,7 +265,7 @@ void AddPatient(bool sign)
     system("pause");
     system("cls");
 }
-
+// what
 // 排序输出信息
 void SortPatient()
 {
